@@ -89,4 +89,37 @@ class ExpenseModel extends Model
 
         return $builder->countAllResults();
     }
+
+    public function getGroupedByCategory(array $filters = []): array
+    {
+        $builder = $this->db->table($this->table)
+            ->select('category')
+            ->selectSum('amount', 'total')
+            ->where('deleted_at IS NULL');
+
+        if (!empty($filters['date_from'])) {
+            $builder->where('expense_date >=', $filters['date_from']);
+        }
+        if (!empty($filters['date_to'])) {
+            $builder->where('expense_date <=', $filters['date_to']);
+        }
+        if (!empty($filters['payment_method'])) {
+            $builder->where('payment_method', $filters['payment_method']);
+        }
+
+        return $builder->groupBy('category')->orderBy('total', 'DESC')->get()->getResultArray();
+    }
+
+    public function getMonthlyTotals(int $year): array
+    {
+        return $this->db->table($this->table)
+            ->select('MONTH(expense_date) as month')
+            ->selectSum('amount', 'total')
+            ->where('YEAR(expense_date)', $year)
+            ->where('deleted_at IS NULL')
+            ->groupBy('month')
+            ->orderBy('month', 'ASC')
+            ->get()
+            ->getResultArray();
+    }
 }

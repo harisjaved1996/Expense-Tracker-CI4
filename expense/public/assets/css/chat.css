@@ -1,0 +1,133 @@
+#chat-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    height: 100vh;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, .15);
+    transform: translateX(100%);
+    transition: transform .3s ease;
+    z-index: 1050;
+}
+
+#chat-sidebar.open {
+    transform: translateX(0);
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .85rem 1rem;
+    background: var(--navy);
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.chat-header .fw-600 {
+    font-weight: 600;
+    font-size: .95rem;
+    letter-spacing: .3px;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,.7);
+    font-size: 1.4rem;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    transition: color .15s;
+}
+
+.btn-icon:hover {
+    color: #fff;
+}
+
+#chat-messages {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 1rem;
+    gap: .5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-bubble {
+    max-width: 82%;
+    border-radius: 16px;
+    padding: .6rem .9rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+.chat-bubble-user {
+    background: var(--navy);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-bubble-ai {
+    background: #f1f5f9;
+    color: #1e293b;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #e2e8f0;
+}
+
+.chat-bubble-thinking {
+    background: #f1f5f9;
+    color: #94a3b8;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #e2e8f0;
+    font-style: italic;
+    font-size: .82rem;
+}
+
+.chat-footer {
+    padding: .75rem 1rem;
+    border-top: 1px solid #e2e8f0;
+    flex-shrink: 0;
+    background: #fff;
+}
+
+#chat-toggle-btn {
+    background: rgba(255,255,255,.12);
+    color: var(--gold);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 8px;
+    padding: .3rem .65rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    transition: background .15s;
+    line-height: 1;
+}
+
+#chat-toggle-btn:hover {
+    background: rgba(255,255,255,.22);
+}
+
+#chat-toggle-btn.active {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+}
+
+#page-wrapper {
+    transition: margin-right .3s ease;
+}
+
+body.chat-open #page-wrapper {
+    margin-right: 380px;
+}

@@ -6,6 +6,7 @@
     <title><?= esc($pageTitle ?? 'Expense Tracker') ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/chat.css') ?>">
     <style>
         :root {
             --navy: #1e3a5f;
@@ -189,6 +190,8 @@
 </head>
 <body>
 
+<div id="page-wrapper">
+
 <nav class="navbar nav-top py-2 mb-4">
     <div class="container-fluid px-4">
         <a class="navbar-brand navbar-brand-text text-white" href="<?= base_url('/') ?>">
@@ -196,6 +199,9 @@
         </a>
         <div class="d-flex align-items-center gap-3">
             <span class="text-white-50 small"><i class="bi bi-calendar3 me-1"></i><?= date('d M Y') ?></span>
+            <button id="chat-toggle-btn" aria-label="Open AI chat" aria-expanded="false">
+                <i class="bi bi-stars"></i>
+            </button>
         </div>
     </div>
 </nav>
@@ -204,6 +210,11 @@
     <?= $this->renderSection('content') ?>
 </main>
 
+</div><!-- /#page-wrapper -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<?= view('chat/_sidebar') ?>
+<script src="<?= base_url('assets/js/chat.js') ?>"></script>
 </body>
 </html>
