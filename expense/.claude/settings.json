@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[System.Console]::Beep(880, 200); Start-Sleep -Milliseconds 100; [System.Console]::Beep(1100, 300)",
+            "shell": "powershell"
+          }
+        ]
+      }
+    ]
+    ,
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[System.Console]::Beep(880, 200); Start-Sleep -Milliseconds 100; [System.Console]::Beep(1100, 300)",
+            "shell": "powershell"
+          }
+        ]
+      }
+    ]
+  }
+}
